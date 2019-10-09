@@ -1,0 +1,81 @@
+/*index.jsp*/
+.main{
+    text-align: center;
+    font-size: 20px;
+}
+
+.rules{
+    padding: 10px;
+}
+.start_game{
+    padding: 10px;
+}
+.autorization{
+    padding:5px;
+}
+.form_item{
+    padding: 3px;
+}
+hr.line{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #e80a0a;
+}
+.start_game{
+    display:block;
+}
+.reg{
+    display:none;
+}
+span.errortext {
+    color: red;
+    font-size: 15px;
+}
+
+/*game.jsp*/
+.game{
+
+    display: flex;
+    font-size: 20px;
+}
+.leftPart{
+    display: block;
+    width:70%;
+    float: left ;
+}
+.rightPart{
+    display: none;
+    width: 20%;
+    float:right;
+}
+hr.vertic{
+    height: 600px;
+    width: 1px;
+    border-color:  #e80a0a;
+}
+textarea{
+    text-align: left;
+}
+
+.headingRating{
+    text-align: center;
+}
+.btn{
+    margin-left:10px;
+}
+
+/*history.jsp*/
+
+.headingPart{
+    display: flex;
+    font-size: 20px;
+}
+
+table{
+    text-align: center;
+    width: 300px;
+    margin-right: auto;
+    margin-left: auto;
+
+}
