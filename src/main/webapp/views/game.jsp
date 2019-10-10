@@ -70,7 +70,6 @@
             <form id="myForm1"  >
 
                 <input type="submit" name="btn1" id="1b" value="1234">
-
             </form>
             <form id="myForm2"  >
                 <input type="submit" name="btn1"  id="2b" value="5678">

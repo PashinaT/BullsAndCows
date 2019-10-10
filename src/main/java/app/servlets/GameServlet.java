@@ -45,6 +45,7 @@ public class GameServlet extends HttpServlet {
             String login=(String) session.getAttribute("userLogin");
             String answerLine="";
             String winAnswer=" Вы угадали! Новое число уже готово!";
+            String inputNumber="";
 
             User user = userDao.findByLogin(login);
             if(user.getYourNumber().equals("0000")){
@@ -55,41 +56,18 @@ public class GameServlet extends HttpServlet {
             }
             Rating ratingUser = ratingDao.findByLogin(login);
 
-            if (req.getParameter("btn1") != null){
+            if(req.getParameter("inputNumber")!= null || req.getParameter("btn1") != null){
+
                 int userAllSteps=ratingUser.getAllSteps()+1;
                 ratingUser.setAllSteps(userAllSteps);
                 ratingDao.update(ratingUser);
-                String inputNumber = req.getParameter("btn1").trim();
-                String userNumber=user.getYourNumber();
-                OutputStream outStream = resp.getOutputStream();
-                answerLine=game.checkNumber(userNumber, inputNumber);
-                outStream.write(answerLine.getBytes("UTF-8"));
-                outStream.flush();
-
-                History history = new History(user,ratingUser.getGamesNumber()+1,answerLine);
-                historyDao.save(history);
-
-                if(inputNumber.equals(userNumber)){
-
-                    outStream.write(winAnswer.getBytes("UTF-8"));
-                    outStream.flush();
-                    int userGamesNumber=ratingUser.getGamesNumber()+1;
-                    ratingUser.setGamesNumber(userGamesNumber);
-                    ratingUser.setAllSteps(userAllSteps);
-                    ratingDao.update(ratingUser);
-                    user.setYourNumber("0000");
-                    userDao.update(user);
+                if(req.getParameter("inputNumber")!= null){
+                    inputNumber = req.getParameter("inputNumber").trim();
+                }else
+                {
+                    inputNumber = req.getParameter("btn1").trim();
                 }
-                outStream.close();
-            }
 
-
-            if(req.getParameter("inputNumber")!= null){
-
-                int userAllSteps=ratingUser.getAllSteps()+1;
-                ratingUser.setAllSteps(userAllSteps);
-                ratingDao.update(ratingUser);
-                String inputNumber = req.getParameter("inputNumber").trim();
                 String userNumber=user.getYourNumber();
                 OutputStream outStream = resp.getOutputStream();
                 answerLine=game.checkNumber(userNumber, inputNumber);
